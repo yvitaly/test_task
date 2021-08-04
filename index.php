@@ -13,7 +13,7 @@
 
     <div id="demo" class="collapse  ">
       <div class="mb-3">
-        <form action="check.php" method="post" >
+        <form action="register.php" method="post" >
           <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Input First Name"></br>
           <input  class="form-control" name="email" id="email" placeholder="Input your email"></br>
           <input type="password" class="form-control" name="password" id="password" placeholder="Input password"></br>
