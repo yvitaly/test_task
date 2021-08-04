@@ -12,14 +12,15 @@ if (empty($_SESSION['is_logged_in'])) {
 $userPDO = 'root';
 $passwordPDO = '';
 $dbh = new PDO('mysql:host=localhost;dbname=ekreative-db', $userPDO, $passwordPDO);
-// здесь мы каким-то образом используем соединение
+
 $result = $dbh->query(" SELECT * FROM `posts` ");
-//var_dump($result->fetch_assoc());die;
+
 $posts = $result->fetchAll();
 
 if (!empty($_GET['order'])) {
-    $result = $dbh->query(" SELECT * FROM posts order by date" .  $_GET['order']);
+    $result = $dbh->query(" SELECT * FROM posts order by date " .  $_GET['order']);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -40,8 +41,8 @@ if (!empty($_GET['order'])) {
         <a class="btn btn-primary" href="add_post.php" role="button">Add Post</a>
     </div>
     <div>
-        <a class="btn btn-primary" href="posts.php?order=asc"> &#9660; </a>
-        <a class="btn btn-primary" href="posts.php?order=desc"> &#9650;</a>
+        <a class="btn btn-primary" role="button" href="posts.php?order=asc"> &#9660; </a>
+        <a class="btn btn-primary" role="button" href="posts.php?order=desc"> &#9650;</a>
     </div>
 </div>
 <div class="conteiner mt-4">
