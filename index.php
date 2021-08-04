@@ -33,6 +33,7 @@ session_start();
               <p><?php echo $error; ?></p>
           <?php endforeach;  ?>
       <?php endif; ?>
+      <?php unset($_SESSION['errors']); ?>
     <div id="demo2" class="collapse">
       <div class="mb-3">
         <form action="auth.php" method="post" >

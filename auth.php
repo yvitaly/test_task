@@ -1,4 +1,5 @@
 <?php
+session_start();
 $email = filter_var(trim($_POST['email']),FILTER_SANITIZE_STRING);
 $password = filter_var(trim($_POST['password']),FILTER_SANITIZE_STRING);
 
@@ -9,8 +10,8 @@ $result = $dbh->query(" SELECT * FROM `users` WHERE `email` = '$email' and passw
 
 $users = $result->fetchAll();
 if(empty($users)) {
-    header('Location: index.php');
     $_SESSION['errors'] = ['No user found'];
+    header('Location: index.php');
     exit();
 }
 $user = $users[0];

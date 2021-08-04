@@ -17,7 +17,9 @@ $result = $dbh->query(" SELECT * FROM `posts` ");
 //var_dump($result->fetch_assoc());die;
 $posts = $result->fetchAll();
 
-
+if (!empty($_GET['order'])) {
+    $result = $dbh->query(" SELECT * FROM posts order by date" .  $_GET['order']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -32,8 +34,16 @@ $posts = $result->fetchAll();
 
 </head>
 <body>
-<a class="btn btn-primary" href="logout.php" role="button">Log Out</a>
-<a class="btn btn-primary" href="add_post.php" role="button">Add Post</a>
+<div class="d-flex justify-content-around">
+    <div>
+        <a class="btn btn-primary" href="logout.php" role="button">Log Out</a>
+        <a class="btn btn-primary" href="add_post.php" role="button">Add Post</a>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="posts.php?order=asc"> &#9660; </a>
+        <a class="btn btn-primary" href="posts.php?order=desc"> &#9650;</a>
+    </div>
+</div>
 <div class="conteiner mt-4">
     <?php  foreach ($posts as $post) : ?>
     <h1 style="text-align: center"> <?php  echo $post['title']; ?></h1>

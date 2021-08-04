@@ -10,11 +10,12 @@ if (empty($_SESSION['is_logged_in']) || empty($_SESSION['is_admin'])) {
 
 if(!empty($_POST)){
     $title = $_POST['title'];
+    $content = $_POST['content'];
     $userPDO = 'root';
     $passwordPDO = '';
     $dbh = new PDO('mysql:host=localhost;dbname=ekreative-db', $userPDO, $passwordPDO);
-    $sql = "INSERT INTO posts (title) VALUES (?)";
-    $dbh->prepare($sql)->execute([$title]);
+    $sql = "INSERT INTO posts (title, content, date ) VALUES (?,?,?)";
+    $dbh->prepare($sql)->execute([$title, $content, date("Y/m/d/H/i/s")]);
 
     header('Location: posts.php');
 }
@@ -39,7 +40,7 @@ if(!empty($_POST)){
 
     <form action="add_post.php" method="post" >
         <input type="text" class="form-control" name="title" id="title" placeholder="Input Title"></br>
-        <textarea class="form-control" placeholder="Your Content"></textarea></br>
+        <textarea class="form-control" placeholder="Your Content" name="content"></textarea></br>
         <button class="btn btn-success" type="submit"> Submit </button>
     </form>
 </div>
